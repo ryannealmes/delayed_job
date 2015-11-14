@@ -32,7 +32,7 @@ module Delayed
 
       def set_priority
         options[:priority] ||= Delayed::Worker.default_priority
-        queue_attributes = Delayed::Worker.queue_attributes.select { |queue| queue[:name] == options[:queue] }
+        queue_attributes = Delayed::Worker.queue_attributes.select { |queue| queue[:name].to_s == options[:queue] }
         options[:priority] = queue_attributes.first[:priority] if queue_attributes.any?
       end
 
